@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#14234a" />
+    <meta name="description" content="Ghostline is a private, profile-free place to talk." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./ghostline-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+    <title>Ghostline — talk without a profile</title>
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <div id="offlineBanner" class="offline-banner" role="status" hidden>
+      You’re offline. Your local conversations are still here.
+    </div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Ghostline home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>ghostline</span>
+        </a>
+        <div class="top-actions">
+          <span class="privacy-chip"><span aria-hidden="true">●</span> Local prototype</span>
+          <button class="icon-button" id="openPrivacy" type="button" aria-label="Open privacy information">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M9.5 12.2 11 13.7l3.8-4"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="mainContent" tabindex="-1">
+        <section class="view welcome-view" data-view="welcome" aria-labelledby="welcomeTitle">
+          <div class="welcome-copy">
+            <p class="eyebrow">No followers. No public profile. No performance.</p>
+            <h1 id="welcomeTitle">Say the thing you couldn’t say anywhere else.</h1>
+            <p class="lede">Ghostline creates a quiet, temporary identity on this device. Share a private link or step into a conversation without bringing your real name along.</p>
+            <div class="welcome-actions">
+              <button class="button button-primary" id="createIdentity" type="button">
+                Create my private identity
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+              <button class="button button-quiet" id="showHow" type="button">See how privacy works</button>
+            </div>
+            <p class="microcopy">No email or phone number required for this prototype.</p>
+          </div>
+          <div class="identity-orbit" aria-label="A temporary anonymous identity represented by a glowing signal">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+            <div class="identity-card">
+              <div class="avatar avatar-large" aria-hidden="true"><span>?</span></div>
+              <p class="identity-status"><span></span> Ready when you are</p>
+              <p class="identity-name">A name only for now</p>
+              <p class="identity-detail">Rotate it whenever you want.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view home-view" data-view="home" hidden aria-labelledby="homeTitle">
+          <div class="home-heading">
+            <div>
+              <p class="eyebrow">Your quiet corner</p>
+              <h1 id="homeTitle">Hello, <span id="identityName">Quiet Cedar</span>.</h1>
+              <p class="lede compact">You appear to others only as this temporary identity.</p>
+            </div>
+            <button class="identity-pill" id="rotateIdentity" type="button" aria-describedby="rotateHint">
+              <span class="avatar" id="identityAvatar" aria-hidden="true">QC</span>
+              <span><strong id="pillName">Quiet Cedar</strong><small>Rotate identity</small></span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"/></svg>
+            </button>
+            <span class="sr-only" id="rotateHint">Creates a new random name and avatar initials on this device</span>
+          </div>
+
+          <div class="action-grid">
+            <article class="action-card action-card-primary">
+              <span class="card-kicker">Private invitation</span>
+              <h2>Open a secret line</h2>
+              <p>Create a link that lets one person reach you without seeing your identity outside Ghostline.</p>
+              <button class="button button-ink" id="createLink" type="button">Create secret link</button>
+              <div class="line-art" aria-hidden="true"><span></span><span></span><span></span></div>
+            </article>
+            <article class="action-card">
+              <span class="card-kicker">Conversation demo</span>
+              <h2>Step into a safe chat</h2>
+              <p>Try the complete conversation flow with a fictional anonymous contact.</p>
+              <button class="button button-secondary" id="openDemoChat" type="button">Talk to Moss</button>
+              <div class="mini-people" aria-hidden="true"><span>QC</span><i></i><span>MO</span></div>
+            </article>
+          </div>
+
+          <section class="inbox" aria-labelledby="inboxTitle">
+            <div class="section-heading">
+              <div><p class="eyebrow">Recent lines</p><h2 id="inboxTitle">Conversations</h2></div>
+              <span class="count" id="conversationCount">1 active</span>
+            </div>
+            <button class="conversation-row" id="openConversation" type="button">
+              <span class="avatar avatar-moss" aria-hidden="true">MO</span>
+              <span class="conversation-copy"><strong>Moss</strong><small id="conversationPreview">You can say as much or as little as you like.</small></span>
+              <span class="conversation-meta"><time id="conversationTime">now</time><i aria-label="Unread conversation"></i></span>
+            </button>
+          </section>
+        </section>
+
+        <section class="view chat-view" data-view="chat" hidden aria-labelledby="chatTitle">
+          <header class="chat-header">
+            <button class="icon-button back-button" id="backHome" type="button" aria-label="Back to conversations">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="avatar avatar-moss" aria-hidden="true">MO</div>
+            <div class="chat-person"><h1 id="chatTitle">Moss</h1><p><span></span> Anonymous · online</p></div>
+            <button class="icon-button" id="chatMenu" type="button" aria-label="Conversation options" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+            <div class="chat-menu-panel" id="chatMenuPanel" hidden>
+              <button id="reportConversation" type="button">Report conversation</button>
+              <button class="danger-text" id="leaveConversation" type="button">Block and leave</button>
+            </div>
+          </header>
+
+          <div class="expiry-note" role="note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Messages in this line disappear after <button id="changeExpiry" type="button">24 hours</button>.
+          </div>
+
+          <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="day-divider"><span>Today</span></div>
+            <div class="message-group incoming">
+              <div class="message-bubble">Hey. I’m Moss. We don’t have to trade real names here.</div>
+              <div class="message-bubble">You can say as much or as little as you like.</div>
+              <time>Just now</time>
+            </div>
+          </div>
+
+          <div class="typing" id="typingIndicator" hidden aria-live="polite"><span></span><span></span><span></span><small>Moss is typing</small></div>
+
+          <form class="composer" id="messageForm" novalidate>
+            <label class="sr-only" for="messageInput">Message Moss</label>
+            <textarea id="messageInput" rows="1" maxlength="1200" placeholder="Write without a profile…" aria-describedby="composerHint" style="resize: none"></textarea>
+            <button class="send-button" type="submit" aria-label="Send message" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+            <span id="composerHint" class="sr-only">Messages are stored only in this browser in the prototype</span>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="dialog" id="linkDialog" aria-labelledby="linkDialogTitle">
+      <form method="dialog" class="dialog-card" novalidate>
+        <button class="dialog-close" value="cancel" aria-label="Close secret link dialog">×</button>
+        <p class="eyebrow">One person · one line</p>
+        <h2 id="linkDialogTitle">Your secret link is ready.</h2>
+        <p>Anyone with this link can start one conversation with your current identity.</p>
+        <p class="shareability-notice" id="shareabilityNotice" role="status" hidden></p>
+        <label for="secretLink">Secret invitation</label>
+        <div class="copy-field"><input id="secretLink" readonly /><button id="copyLink" type="button">Copy</button></div>
+        <label for="expirySelect">Link expires</label>
+        <select id="expirySelect">
+          <option>After one use</option>
+          <option>In 1 hour</option>
+          <option>In 24 hours</option>
+        </select>
+        <button class="button button-primary button-block" value="done">Done</button>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="privacyDialog" aria-labelledby="privacyTitle">
+      <form method="dialog" class="dialog-card dialog-card-wide" novalidate>
+        <button class="dialog-close" value="cancel" aria-label="Close privacy information">×</button>
+        <p class="eyebrow">Prototype privacy</p>
+        <h2 id="privacyTitle">Private by intention. Honest about the limits.</h2>
+        <div class="privacy-list">
+          <div><span>01</span><p><strong>No account details</strong>This demo asks for no email, phone number, or real name.</p></div>
+          <div><span>02</span><p><strong>Stored on this device</strong>Your identity and demo messages stay in this browser’s local storage.</p></div>
+          <div><span>03</span><p><strong>Not end-to-end encrypted yet</strong>This interface is a working product prototype, not the audited production network.</p></div>
+        </div>
+        <button class="button button-primary button-block" value="done">I understand</button>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="reportDialog" aria-labelledby="reportTitle">
+      <form method="dialog" class="dialog-card" id="reportForm" novalidate>
+        <button class="dialog-close" id="closeReport" type="button" aria-label="Close report dialog">×</button>
+        <p class="eyebrow">Safety tools</p>
+        <h2 id="reportTitle">Report this conversation</h2>
+        <p>Select the clearest reason. In a production encrypted chat, only messages you choose would be attached.</p>
+        <fieldset>
+          <legend>Reason</legend>
+          <label class="radio-row"><input type="radio" name="reason" value="harassment" /> Harassment or threats</label>
+          <label class="radio-row"><input type="radio" name="reason" value="spam" /> Spam or scam</label>
+          <label class="radio-row"><input type="radio" name="reason" value="unsafe" /> Unsafe or illegal content</label>
+        </fieldset>
+        <p class="field-error" id="reportError" role="alert" hidden>Choose a reason before sending the report.</p>
+        <div class="dialog-actions"><button class="button button-quiet" id="cancelReport" type="button">Cancel</button><button class="button button-danger" id="sendReport" type="submit">Send report</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="leaveDialog" aria-labelledby="leaveTitle">
+      <form method="dialog" class="dialog-card" novalidate>
+        <p class="eyebrow">Block and leave</p>
+        <h2 id="leaveTitle">Close this line with Moss?</h2>
+        <p>Moss won’t be able to contact this identity again. The conversation will be removed from this device.</p>
+        <div class="dialog-actions"><button class="button button-secondary" value="cancel" autofocus>Keep conversation</button><button class="button button-danger" id="confirmLeave" value="confirm">Block and remove</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+    <script src="./app.js?v=4" defer></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "Ghostline",
+  "short_name": "Ghostline",
+  "description": "A private, profile-free place to talk.",
+  "start_url": "./#home",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#14234a",
+  "icons": [
+    { "src": "./ghostline-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

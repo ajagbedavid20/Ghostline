@@ -1,0 +1,14 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["."],
+  "locale": "en",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Scrollbar", "Toast"],
+  "ownership": {
+    "Select/Listbox": "native"
+  },
+  "evidence": {
+    "interactionStates": "UX-CONTRACT.md",
+    "designTokens": "DESIGN.md"
+  }
+}
